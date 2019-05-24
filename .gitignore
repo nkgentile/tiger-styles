@@ -1,0 +1,22 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node.js
+frontend/node_modules/
+
+
+# Python
+__pycache__
+backend/venv
+*.pyc
+py35
+py35_env
+psofai-aws.config
+
+.vscode
+
+# macOs
+.DS_Store
+
