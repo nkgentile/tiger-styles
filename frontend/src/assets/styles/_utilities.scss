@@ -1,0 +1,9 @@
+@each $size, $percent in $sizes {
+  .vh-#{$size} {
+    height: #{$size}vh !important;
+  }
+}
+
+.border-dashed {
+  border-style: dashed;
+}

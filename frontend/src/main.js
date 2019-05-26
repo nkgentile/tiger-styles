@@ -1,12 +1,22 @@
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import Vue from 'vue';
+import App from '@/App.vue';
+import router from '@/router';
+import store from '@/store';
+import '@/plugins';
+import '@/assets/styles/index.scss';
 
-Vue.config.productionTip = false
+import io from 'socket.io-client';
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
+Vue.config.productionTip = false;
+
+const app = new Vue({
   router,
-  render: h => h(App)
-})
+  store,
+  render: h => h(App),
+});
+
+const socket = io('http://localhost:5000/style');
+socket.on('connect', () => {
+  console.log('Connected!');
+  app.$mount('#app');
+});
