@@ -6,13 +6,9 @@ import * as uuid from 'uuid/v4';
 import io from 'socket.io-client';
 const socket = io('http://localhost:5000/style');
 
-socket.on('success', data => {
-  console.log(data);
-});
-
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     clientId: uuid(),
     originalImage: null,
@@ -41,3 +37,11 @@ export default new Vuex.Store({
     },
   },
 });
+
+socket.on('success', data => {
+  console.log(data);
+  const file = new Blob([new Uint8Array(data)]);
+  store.commit('setStyledImage', { file });
+});
+
+export default store;

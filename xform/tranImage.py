@@ -123,13 +123,9 @@ class XForm:
         else:
             return False, "Style Model not supported"
         outFile = None
-        outExt  = '_{}_xform.jpg'.format(styleID)
-        if '.photo' in imageFile:
-            fileName = imageFile.split('.photo')[0]
-        else:
-            fileName = imageFile.split('.')[0]
-        remoteFile = fileName.rsplit('/')[-1] + outExt
-        outFile    = fileName + outExt
+        out_folder = os.getenv('OUT_DIR')
+        fileName = imageFile.rsplit('/')[-1]
+        outFile = os.path.join(out_folder, fileName)
 
         if os.path.exists(outFile):
             os.remove(outFile)
@@ -142,7 +138,7 @@ class XForm:
                 su = StorageUtils()
                 st, uploadMsg = su.fileUpload(outFile, remoteFile)
                 msg = msg + "; "+ uploadMsg
-            return True, imageFile, msg
+            return True, outFile, msg
         return False, None, "Failed in XFORM"
 
 

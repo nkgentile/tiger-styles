@@ -31,7 +31,7 @@ def image_upload(submission):
         # image = Image.frombytes('RGB', (128,128), file, 'jpg')
         # submission['content'].save('image.test.jpg')
         #TODO put this in try catch block and feature to upload / download file from S3
-        fileName = submission[ 'id' ] + "_input.jpg"
+        fileName = submission[ 'id' ] + ".jpg"
         fileWPath = os.path.join(UPLOAD_FOLDER,fileName )
         f = open(fileWPath, 'wb')
         f.write(submission['content'])
@@ -45,6 +45,7 @@ def image_upload(submission):
             #convert the output imafge into a binary blob
             f = open (outputImage, 'rb')
             styledImageBlob = f.read()
+            print(outputImage)
             emit('success', styledImageBlob, namespace='/style')
         else:
             emit("error", msg, namespace ='/style')
