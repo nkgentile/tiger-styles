@@ -10,11 +10,13 @@ import json
 from tools.config import UPLOAD_FOLDER
 from tools.storage_utils import StorageUtils
 from flask_socketio import SocketIO, emit
-# from xform.tranImage import XForm
+from tools.config import UPLOAD_FOLDER
+from xform.tranImage import XForm
 
 app = Flask(__name__,
             static_folder="./dist/static",
             template_folder="./dist")
+
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 CORS(app)
 # app.config['CORS_HEADERS'] = 'Content-Type'
@@ -28,12 +30,24 @@ def image_upload(submission):
     if (submission[ 'content' ]):
         # image = Image.frombytes('RGB', (128,128), file, 'jpg')
         # submission['content'].save('image.test.jpg')
-        f = open('image.test.jpg', 'wb')
+        #TODO put this in try catch block and feature to upload / download file from S3
+        fileName = submission[ 'id' ] + "_input.jpg"
+        fileWPath = os.path.join(UPLOAD_FOLDER,fileName )
+        f = open(fileWPath, 'wb')
         f.write(submission['content'])
         f.close()
-        print(submission[ 'id' ])
+        print("file uploaded as {} and saved locally".format(fileWPath))
         print(submission[ 'style' ])
-    emit('success', {'data': 200}, namespace='/style')
+        xf = XForm()
+        status, outputImage, msg = xf.process_image(fileWPath, 
+                            submission['style'], False)
+        if status == True:
+            #convert the output imafge into a binary blob
+            f = open (outputImage, 'rb')
+            styledImageBlob = f.read()
+            emit('success', styledImageBlob, namespace='/style')
+        else:
+            emit("error", msg, namespace ='/style')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
