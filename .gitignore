@@ -20,3 +20,5 @@ psofai-aws.config
 # macOs
 .DS_Store
 
+dist
+
