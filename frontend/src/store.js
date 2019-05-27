@@ -29,11 +29,7 @@ const store = new Vuex.Store({
   actions: {
     uploadImage({ state }) {
       const { clientId, style, originalImage } = state;
-      socket.binary(true).emit('upload', {
-        id: clientId,
-        style: style,
-        content: originalImage,
-      });
+      socket.binary(true).emit('upload', clientId, style, originalImage);
     },
   },
 });
