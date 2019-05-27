@@ -37,13 +37,17 @@ export default new Router({
       name: 'share',
       component: Share,
       beforeEnter(to, from, next) {
-        const { originalImage, style } = store.state;
+        const { originalImage, style, styledImage } = store.state;
         if (!originalImage) {
-          next('/upload');
+          return next('/upload');
         } else {
+          if (styledImage) {
+            store.commit('setStyledImage', { file: null });
+          }
           store.dispatch('uploadImage');
-          next();
         }
+
+        return next();
       },
     },
   ],
