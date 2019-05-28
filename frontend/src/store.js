@@ -3,8 +3,9 @@ import Vuex from 'vuex';
 
 import * as uuid from 'uuid/v4';
 
+const { VUE_APP_PORT: port } = process.env;
 import io from 'socket.io-client';
-const socket = io('http://localhost:5000/style');
+const socket = io(`http://localhost:${port}/style`);
 
 Vue.use(Vuex);
 
