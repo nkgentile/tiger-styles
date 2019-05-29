@@ -15,8 +15,8 @@ const app = new Vue({
   render: h => h(App),
 });
 
-const { VUE_APP_PORT: port } = process.env;
-const socket = io(`http://localhost:${port}/style`);
+const { VUE_APP_PORT: port, VUE_APP_HOST: hostname } = process.env;
+const socket = io(`http://${hostname}:${port}/style`);
 socket.on('connect', () => {
   console.log('Connected!');
   app.$mount('#app');
