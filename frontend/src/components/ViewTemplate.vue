@@ -1,7 +1,11 @@
 <template>
   <article class="view-template vh-100 p-3">
     <b-container tag="header" class="view-template-header" fluid>
-      <slot name="header" />
+      <b-row align-h="center">
+        <b-col sm="12" md="4">
+          <slot name="header" />
+        </b-col>
+      </b-row>
     </b-container>
     <b-container
       tag="main"
@@ -9,10 +13,18 @@
       :class="$style[align]"
       fluid
     >
-      <slot />
+      <b-row align-h="center">
+        <b-col sm="12" md="4">
+          <slot />
+        </b-col>
+      </b-row>
     </b-container>
     <b-container tag="footer" class="view-template-footer" fluid>
-      <slot name="footer" />
+      <b-row align-h="center">
+        <b-col sm="12" md="4">
+          <slot name="footer" />
+        </b-col>
+      </b-row>
     </b-container>
   </article>
 </template>

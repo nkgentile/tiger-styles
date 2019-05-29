@@ -16,7 +16,7 @@
           <b-button to="/instructions" variant="primary">Get Started</b-button>
         </b-col>
       </b-row>
-      <b-row m>
+      <b-row>
         <b-col>
           <p class="small text-muted">
             Disclaimer: We do not store any personal information, including your
