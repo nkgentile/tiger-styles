@@ -20,7 +20,7 @@
         >
           <b-row class="h-100" align-h="center" align-v="center">
             <b-col class="text-center">
-              <fa-icon class="text-secondary" icon="spinner" spin />
+              <fa-icon class="text-secondary" size="2x" icon="spinner" spin />
             </b-col>
           </b-row>
         </b-card>
@@ -31,6 +31,9 @@
     <template #footer>
       <b-row>
         <b-col>
+          <b-button to="/style" variant="outline-dark" class="mr-3"
+            >Choose another style</b-button
+          >
           <b-button to="/upload" variant="primary">Start Over</b-button>
         </b-col>
       </b-row>
