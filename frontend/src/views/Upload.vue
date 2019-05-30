@@ -26,7 +26,7 @@
           </b-row>
         </b-card>
         <b-img v-else :src="image" fluid thumbnail> </b-img>
-        <b-file v-model="file"></b-file>
+        <b-file class="my-3" v-model="file"></b-file>
       </b-col>
     </b-row>
 
