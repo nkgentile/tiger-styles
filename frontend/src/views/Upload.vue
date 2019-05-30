@@ -32,7 +32,7 @@
 
     <template #footer>
       <b-row>
-        <b-col>
+        <b-col class="text-right">
           <b-button to="/style" variant="outline-light">Next</b-button>
         </b-col>
       </b-row>

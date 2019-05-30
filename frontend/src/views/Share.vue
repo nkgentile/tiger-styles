@@ -31,9 +31,9 @@
     <template #footer>
       <b-row>
         <b-col>
-          <b-button to="/style" variant="outline-dark" class="mr-3"
-            >Choose another style</b-button
-          >
+          <b-button to="/style" variant="outline-secondary">Back</b-button>
+        </b-col>
+        <b-col>
           <b-button to="/upload" variant="primary">Start Over</b-button>
         </b-col>
       </b-row>
