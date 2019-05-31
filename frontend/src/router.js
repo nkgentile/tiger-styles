@@ -26,10 +26,14 @@ export default new Router({
       path: '/upload',
       name: 'upload',
       component: Upload,
+      beforeEnter(to, from, next) {
+        store.commit('setOriginalImage', { file: null });
+        next();
+      },
     },
     {
       path: '/style',
-      name: 'style',
+      name: 'styl',
       component: Style,
     },
     {
