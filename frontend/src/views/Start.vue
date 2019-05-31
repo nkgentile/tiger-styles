@@ -1,5 +1,9 @@
 <template>
   <view-template id="start" align="end">
+    <b-img
+      id="background"
+      src="@/assets/images/jpg/landing-background.jpg"
+    ></b-img>
     <b-row>
       <b-col>
         <b-img-lazy :src="logo" fluid></b-img-lazy>
@@ -46,7 +50,16 @@
 
 <style lang="scss" scoped>
   #start {
-    background-color: #212529;
+    #background {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
 
     &::before {
       content: "";
@@ -60,7 +73,7 @@
       width: 100vw;
       height: 100vh;
 
-      background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+      background: linear-gradient(to top, white 45%, rgba(255, 255, 255, 0) 100%);
     }
   }
 </style>
